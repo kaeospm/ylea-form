@@ -123,8 +123,8 @@ export default function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <p className="label-top">40TH YLEA</p>
-        <h1>40th Youth Leadership Excellence Awards (YLEA) 2026</h1>
+        <p className="label-top">41ST YLEA</p>
+        <h1>41st Youth Leadership Excellence Awards (YLEA) 2026</h1>
         <p className="deadline">Deadline: <strong>{DEADLINE}</strong></p>
       </header>
       <ProgressBar steps={STEPS} current={step} />

@@ -4,9 +4,9 @@ export default function WelcomeScreen({ deadline, onStart }: Props) {
   return (
     <div className="welcome">
       <div className="welcome-card">
-        <p className="label-top">40TH YLEA</p>
+        <p className="label-top">41ST YLEA</p>
         <p className="welcome-sub">YLEA 2026</p>
-        <h1>40th Youth Leadership Excellence Awards (YLEA) 2026</h1>
+        <h1>41st Youth Leadership Excellence Awards (YLEA) 2026</h1>
         <p className="welcome-desc">
           Complete the official nomination dossier. Use block letters, upload proof of excellence,
           and ensure every section is accurate before submission.
