@@ -13,7 +13,7 @@ export default function Requirements({ form, update, onNext, onPrev }: Props) {
         type="file"
         label="Nomination Letter"
         required
-        helper="Signed by at least three (3) members of the School Screening Committee."
+        helper="Signed by the school head or principal and addressed to JCI Antique Kruhay President Lord Leomer Pomperada."
         onChange={f => update({ nominationLetterFile: f })}
         accept=".pdf,.jpg,.jpeg,.png"
       />

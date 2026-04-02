@@ -11,7 +11,7 @@ export default function SchoolInfo({ form, update, onNext, onPrev }: Props) {
 
   return (
     <FormSection title="II. School Information" subtitle="School and contact details." onNext={valid ? onNext : undefined} onPrev={onPrev}>
-      <Field type="select" label="School Level" required value={form.schoolLevel} onChange={v => update({ schoolLevel: v })} options={['Elementary', 'Junior High School', 'Senior High School']} />
+      <Field type="select" label="School Level" required value={form.schoolLevel} onChange={v => update({ schoolLevel: v })} options={['Senior High School']} />
       <Field type="text" label="Name of School" required value={form.schoolName} onChange={v => update({ schoolName: v })} placeholder="Antique National High School" />
       <Field type="text" label="Address of School" required value={form.schoolAddress} onChange={v => update({ schoolAddress: v })} />
       <Field type="text" label="Full Name of School Head" required value={form.schoolHeadName} onChange={v => update({ schoolHeadName: v })} placeholder="Dr. Maria Santos" />
