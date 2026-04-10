@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
-import type { ApplicationRow, Claim } from '../../types'
+import type { ApplicationRow } from '../../types'
 import '../../admin.css'
 
 export default function AdminDetail() {
@@ -141,7 +141,7 @@ function FileRow({ label, url }: { label: string; url: string | null }) {
   )
 }
 
-function ClaimsSection({ title, claims }: { title: string; claims: Claim[] }) {
+function ClaimsSection({ title, claims }: { title: string; claims: Record<string, unknown>[] }) {
   const validClaims = claims?.filter(c => c.award || c.participation) || []
 
   return (
@@ -151,24 +151,30 @@ function ClaimsSection({ title, claims }: { title: string; claims: Claim[] }) {
         {validClaims.length === 0 ? (
           <span className="detail-empty">No claims submitted</span>
         ) : (
-          validClaims.map((claim, i) => (
-            <div key={i} className="detail-claim">
-              <div className="detail-claim-header">Claim #{i + 1}</div>
-              <Row label="Award" value={claim.award} />
-              <Row label="Participation" value={claim.participation} />
-              <Row label="Rank" value={claim.rank} />
-              <Row label="Level" value={claim.level} />
-              {claim.modality && <Row label="Modality" value={claim.modality} />}
-              {claim.proofUrl && (
+          validClaims.map((claim, i) => {
+            const proofUrl = (claim.proofUrl || claim.proofurl || claim.proof_url) as string | undefined
+
+            return (
+              <div key={i} className="detail-claim">
+                <div className="detail-claim-header">Claim #{i + 1}</div>
+                <Row label="Award" value={String(claim.award || '')} />
+                <Row label="Participation" value={String(claim.participation || '')} />
+                <Row label="Rank" value={String(claim.rank || '')} />
+                <Row label="Level" value={String(claim.level || '')} />
+                {claim.modality && <Row label="Modality" value={String(claim.modality)} />}
                 <div className="detail-row">
                   <span className="detail-label">Proof</span>
-                  <a href={claim.proofUrl} target="_blank" rel="noopener noreferrer" className="detail-link">
-                    View Proof
-                  </a>
+                  {proofUrl ? (
+                    <a href={proofUrl} target="_blank" rel="noopener noreferrer" className="detail-link">
+                      View Proof
+                    </a>
+                  ) : (
+                    <span className="detail-empty">No proof uploaded</span>
+                  )}
                 </div>
-              )}
-            </div>
-          ))
+              </div>
+            )
+          })
         )}
       </div>
     </div>

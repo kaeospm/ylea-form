@@ -5,14 +5,13 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-export async function uploadFile(file: File, path: string): Promise<string | null> {
+export async function uploadFile(file: File, path: string): Promise<string> {
   const { data, error } = await supabase.storage
     .from('ylea-files')
     .upload(path, file, { upsert: true })
 
   if (error) {
-    console.error('Upload error:', error)
-    return null
+    throw new Error(`Failed to upload ${file.name}: ${error.message}`)
   }
 
   const { data: urlData } = supabase.storage.from('ylea-files').getPublicUrl(data.path)
