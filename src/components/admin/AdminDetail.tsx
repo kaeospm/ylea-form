@@ -142,6 +142,7 @@ function FileRow({ label, url }: { label: string; url: string | null }) {
 }
 
 function ClaimsSection({ title, claims }: { title: string; claims: Record<string, unknown>[] }) {
+  console.log(`[DEBUG] ${title} raw data:`, JSON.stringify(claims, null, 2))
   const validClaims = claims?.filter(c => c.award || c.participation) || []
 
   return (
