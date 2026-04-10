@@ -42,3 +42,34 @@ export type FormData = {
   // Confirmation
   confirmed: boolean
 }
+
+export type ApplicationRow = {
+  id: string
+  created_at: string
+  reference_id: string
+  full_name: string
+  complete_address: string
+  municipality: string
+  phone_number: string
+  email: string
+  birthday: string
+  age: number
+  sex: string
+  school_level: string
+  school_name: string
+  school_address: string
+  school_head_name: string
+  school_head_email: string
+  school_head_mobile: string
+  advisor_name: string
+  advisor_email: string
+  advisor_mobile: string
+  nomination_letter_url: string | null
+  academic_records_url: string | null
+  picture_url: string | null
+  academic_claims: Claim[]
+  leadership_claims: Claim[]
+  community_claims: Claim[]
+  video_link: string
+  confirmed: boolean
+}

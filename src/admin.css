@@ -1,0 +1,63 @@
+/* Admin Login */
+.admin-login-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; background: #f8f9fa; }
+.admin-login-card { background: white; border-radius: 16px; padding: 40px; max-width: 420px; width: 100%; box-shadow: 0 2px 16px rgba(0,0,0,0.08); display: flex; flex-direction: column; gap: 20px; }
+.admin-login-header { text-align: center; margin-bottom: 8px; }
+.admin-login-header h1 { font-size: 1.6rem; font-weight: 700; color: #1a1a2e; margin: 8px 0 4px; }
+.admin-login-sub { font-size: 0.875rem; color: #64748b; }
+.admin-error { font-size: 0.875rem; color: #dc2626; background: #fef2f2; border-radius: 8px; padding: 10px 14px; }
+
+/* Admin Layout */
+.admin-page { min-height: 100vh; background: #f8f9fa; }
+.admin-header { background: white; border-bottom: 1px solid #e2e8f0; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.admin-header-left { display: flex; align-items: center; gap: 16px; }
+.admin-header-left h1 { font-size: 1.25rem; font-weight: 700; color: #1a1a2e; margin: 2px 0 0; }
+.admin-header-right { display: flex; align-items: center; gap: 12px; }
+.admin-count { font-size: 0.875rem; color: #64748b; font-weight: 500; }
+
+/* Toolbar */
+.admin-toolbar { display: flex; gap: 12px; padding: 16px 24px; background: white; border-bottom: 1px solid #e2e8f0; flex-wrap: wrap; }
+.admin-search { flex: 1; min-width: 200px; }
+.admin-filter { width: 200px; }
+
+/* Table */
+.admin-table-wrap { overflow-x: auto; padding: 0 24px; margin-top: 16px; }
+.admin-table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.admin-table th { background: #f8f9fa; text-align: left; padding: 12px 16px; font-size: 0.75rem; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid #e2e8f0; white-space: nowrap; }
+.admin-table td { padding: 12px 16px; font-size: 0.875rem; color: #374151; border-bottom: 1px solid #f1f5f9; }
+.admin-table tbody tr:hover { background: #fafbfc; }
+.admin-table tbody tr:last-child td { border-bottom: none; }
+.name-cell { font-weight: 600; color: #1a1a2e; white-space: nowrap; }
+.ref-code { font-family: ui-monospace, Consolas, monospace; font-size: 0.8rem; background: #fef2f2; color: #dc2626; padding: 2px 8px; border-radius: 4px; letter-spacing: 0.05em; }
+.ref-code-lg { font-size: 1rem; padding: 6px 14px; }
+.btn-view { background: #1a1a2e; color: white; border: none; border-radius: 6px; padding: 6px 14px; font-size: 0.8rem; font-weight: 500; cursor: pointer; white-space: nowrap; }
+.btn-view:hover { background: #2d2d4e; }
+
+/* States */
+.admin-loading { text-align: center; padding: 80px 24px; color: #64748b; font-size: 0.95rem; }
+.admin-empty { text-align: center; padding: 80px 24px; color: #94a3b8; font-size: 0.95rem; }
+.admin-footer { text-align: center; padding: 16px; color: #94a3b8; font-size: 0.8rem; }
+
+/* Detail Page */
+.detail-grid { max-width: 900px; margin: 24px auto; padding: 0 24px; display: flex; flex-direction: column; gap: 20px; }
+.detail-section { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.detail-section-title { font-size: 1rem; font-weight: 700; color: #1a1a2e; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid #f1f5f9; }
+.detail-section-body { display: flex; flex-direction: column; gap: 8px; }
+.detail-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 6px 0; gap: 16px; }
+.detail-label { font-size: 0.85rem; color: #64748b; flex-shrink: 0; min-width: 140px; }
+.detail-value { font-size: 0.875rem; color: #1a1a2e; font-weight: 500; text-align: right; word-break: break-word; }
+.detail-link { font-size: 0.875rem; color: #dc2626; font-weight: 500; text-decoration: none; }
+.detail-link:hover { text-decoration: underline; }
+.detail-empty { font-size: 0.85rem; color: #94a3b8; font-style: italic; }
+.detail-claim { border: 1px solid #f1f5f9; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+.detail-claim-header { font-size: 0.8rem; font-weight: 700; color: #dc2626; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+
+@media (max-width: 768px) {
+  .admin-header { padding: 12px 16px; }
+  .admin-toolbar { padding: 12px 16px; }
+  .admin-table-wrap { padding: 0 8px; }
+  .admin-table th, .admin-table td { padding: 10px 10px; font-size: 0.8rem; }
+  .admin-filter { width: 100%; }
+  .detail-grid { padding: 0 16px; }
+  .detail-row { flex-direction: column; gap: 2px; }
+  .detail-value { text-align: left; }
+}
