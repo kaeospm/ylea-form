@@ -162,7 +162,7 @@ function ClaimsSection({ title, claims }: { title: string; claims: Record<string
                 <Row label="Participation" value={String(claim.participation || '')} />
                 <Row label="Rank" value={String(claim.rank || '')} />
                 <Row label="Level" value={String(claim.level || '')} />
-                {claim.modality && <Row label="Modality" value={String(claim.modality)} />}
+                {claim.modality ? <Row label="Modality" value={String(claim.modality)} /> : null}
                 <div className="detail-row">
                   <span className="detail-label">Proof</span>
                   {proofUrl ? (
