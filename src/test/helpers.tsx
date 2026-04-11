@@ -108,15 +108,15 @@ export const mockApplicationNoFiles = {
   id: 'test-id-456',
   full_name: 'Santos, Maria C.',
   reference_id: 'YLEA-XYZ98765',
-  nomination_letter_url: null,
-  academic_records_url: null,
-  picture_url: null,
+  nomination_letter_url: null as string | null,
+  academic_records_url: null as string | null,
+  picture_url: null as string | null,
   academic_claims: [
     { id: 1, award: 'With honors', participation: 'N/A', rank: 'None', level: 'Homeroom' },
   ],
   leadership_claims: [
     { id: 1, award: 'Committee Chair', participation: 'Committee Chairperson', rank: 'Other Ranks/Positions', level: 'School', modality: 'Online' },
   ],
-  community_claims: [],
+  community_claims: [] as { id: number; award: string; participation: string; rank: string; level: string; proofUrl?: string }[],
   video_link: '',
 }

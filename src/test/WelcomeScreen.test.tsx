@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event'
 import WelcomeScreen from '../components/WelcomeScreen'
 
 describe('A. Welcome Screen', () => {
-  const defaultProps = { deadline: 'April 10, 2026', onStart: vi.fn() }
+  const defaultProps = { deadline: 'April 10, 2026', onStart: vi.fn(), onResume: vi.fn() }
 
   it('A1 — Welcome screen loads with all elements', () => {
     render(<WelcomeScreen {...defaultProps} />)
@@ -31,7 +31,7 @@ describe('A. Welcome Screen', () => {
 
   it('A5 — Start button calls onStart', async () => {
     const onStart = vi.fn()
-    render(<WelcomeScreen {...defaultProps} onStart={onStart} />)
+    render(<WelcomeScreen {...defaultProps} onStart={onStart} onResume={vi.fn()} />)
     await userEvent.click(screen.getByText('Start Nomination'))
     expect(onStart).toHaveBeenCalledOnce()
   })

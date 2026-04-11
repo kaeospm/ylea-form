@@ -1,6 +1,6 @@
-type Props = { deadline: string; onStart: () => void }
+type Props = { deadline: string; onStart: () => void; onResume: () => void }
 
-export default function WelcomeScreen({ deadline, onStart }: Props) {
+export default function WelcomeScreen({ deadline, onStart, onResume }: Props) {
   return (
     <div className="welcome">
       <div className="welcome-card">
@@ -17,7 +17,10 @@ export default function WelcomeScreen({ deadline, onStart }: Props) {
           <div className="info-row"><span>Submission Mode</span><strong>Online Portfolio</strong></div>
         </div>
         <p className="ref-note">Keep your Reference ID safe — use it to monitor your application status anytime.</p>
-        <button className="btn-primary" onClick={onStart}>Start Nomination</button>
+        <div className="welcome-actions">
+          <button className="btn-primary" onClick={onStart}>Start Nomination</button>
+          <button className="btn-secondary" onClick={onResume}>Update Existing Application</button>
+        </div>
       </div>
     </div>
   )

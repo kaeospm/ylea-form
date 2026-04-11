@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import WelcomeScreen from './components/WelcomeScreen'
+import LookupScreen from './components/LookupScreen'
+import UpdateApplication from './components/UpdateApplication'
 import GeneralInfo from './components/steps/GeneralInfo'
 import SchoolInfo from './components/steps/SchoolInfo'
 import Requirements from './components/steps/Requirements'
@@ -10,7 +12,7 @@ import VideoLink from './components/steps/VideoLink'
 import Confirmation from './components/steps/Confirmation'
 import SuccessScreen from './components/SuccessScreen'
 import ProgressBar from './components/ProgressBar'
-import type { FormData } from './types'
+import type { FormData, ApplicationRow } from './types'
 import { supabase, uploadFile, generateReferenceId } from './lib/supabase'
 import './App.css'
 
@@ -36,14 +38,16 @@ const STEPS = [
   'Video', 'Confirmation'
 ]
 
+type Screen = 'welcome' | 'form' | 'submitted' | 'lookup' | 'update'
+
 export default function App() {
-  const [started, setStarted] = useState(false)
+  const [screen, setScreen] = useState<Screen>('welcome')
   const [step, setStep] = useState(0)
   const [form, setForm] = useState<FormData>(emptyForm)
   const [submitting, setSubmitting] = useState(false)
   const [referenceId, setReferenceId] = useState('')
-  const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
+  const [foundApplication, setFoundApplication] = useState<ApplicationRow | null>(null)
 
   const update = (fields: Partial<FormData>) => setForm(prev => ({ ...prev, ...fields }))
   const next = () => setStep(s => Math.min(s + 1, STEPS.length - 1))
@@ -107,16 +111,45 @@ export default function App() {
       if (dbError) throw dbError
 
       setReferenceId(refId)
-      setSubmitted(true)
-    } catch (e: any) {
-      setError(e.message || 'Submission failed. Please try again.')
+      setScreen('submitted')
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : 'Submission failed. Please try again.'
+      setError(msg)
     } finally {
       setSubmitting(false)
     }
   }
 
-  if (!started) return <WelcomeScreen deadline={DEADLINE} onStart={() => setStarted(true)} />
-  if (submitted) return <SuccessScreen referenceId={referenceId} />
+  if (screen === 'welcome') {
+    return (
+      <WelcomeScreen
+        deadline={DEADLINE}
+        onStart={() => setScreen('form')}
+        onResume={() => setScreen('lookup')}
+      />
+    )
+  }
+
+  if (screen === 'lookup') {
+    return (
+      <LookupScreen
+        onFound={(app) => { setFoundApplication(app); setScreen('update') }}
+        onBack={() => setScreen('welcome')}
+      />
+    )
+  }
+
+  if (screen === 'update' && foundApplication) {
+    return (
+      <UpdateApplication
+        application={foundApplication}
+        onDone={() => { setFoundApplication(null); setScreen('welcome') }}
+        onBack={() => setScreen('lookup')}
+      />
+    )
+  }
+
+  if (screen === 'submitted') return <SuccessScreen referenceId={referenceId} />
 
   const stepProps = { form, update, onNext: next, onPrev: prev }
 

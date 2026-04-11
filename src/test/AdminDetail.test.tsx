@@ -12,7 +12,8 @@ describe('P. Admin Application Detail', () => {
     vi.mocked(supabase.auth.getSession).mockResolvedValue({ data: { session: mockSession } } as never)
   })
 
-  const renderDetail = (appData = mockApplication) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const renderDetail = (appData: any = mockApplication) => {
     vi.mocked(supabase.from).mockReturnValue({
       select: vi.fn().mockReturnValue({
         eq: vi.fn().mockReturnValue({
